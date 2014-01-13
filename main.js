@@ -37,6 +37,8 @@ window.onload = function(){
 	SC.initialize({
     	client_id : 'e553081039dc6507a7c3ebf6211e4590'
 	});
+	//init gui
+	guiinit();
 	//load the sounds
 	SC.get('/tracks',parameters,function(e){
 		for(var i = 0; i < e.length; i++){
@@ -51,4 +53,6 @@ window.onload = function(){
 		};
 		
 	});
+
+
 };
