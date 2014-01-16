@@ -21,6 +21,7 @@ function Sound(context,searchparameters){
 		}	
 
 		//load a random one from the downloadable results
+		console.log(that.searchResults);
 		var random = Math.floor(Math.random() * that.searchResults.length);
 		var source = that.searchResults[random].download_url + '?client_id=e553081039dc6507a7c3ebf6211e4590';
 		//load the sound
@@ -30,11 +31,16 @@ function Sound(context,searchparameters){
 					
 		request.onload = function(){
 			that.context.decodeAudioData(request.response,function(b){
-				console.log(b);
+				
 				that.buffer = b;
 				that.loaded = true;
 			},function(){
-				console.log('loading failed');
+				//if failed - try another one
+				console.log('request failed');
+				var random = Math.floor(Math.random() * that.searchResults.length);
+				var source = that.searchResults[random].download_url + '?client_id=e553081039dc6507a7c3ebf6211e4590';
+				request.open('GET',source,true);
+				request.send();
 			});
 		};
 		request.send();
@@ -62,11 +68,12 @@ var parameters = {
 	
 	duration:{
 		from: 100,
-		to: 3000
+		to: 2000
 	},
 	
 	limit: 60,
 	q: "kick",
+	tags: "kick,",
 
 	//randomises the date for different results
 	created_at:{
