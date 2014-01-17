@@ -1,8 +1,8 @@
-function guiinit(){
-	
-}
+// modified loop - from WAAX by Hongchan Choi -https://github.com/hoch/waax
 
 function loop(callback, repetition, interval, context) {
+    this.context = context;
+
     Object.defineProperties(this, {
         // index for iteration
         _index: {
@@ -53,13 +53,14 @@ function loop(callback, repetition, interval, context) {
     });
 
     this._infinite = (this._repetition === 0) ? true : false;
-};
+}
 
 loop.prototype = Object.create(null, {
 
     _loop: {
         value: function () {
-            var n = context.currentTime;
+            
+            var n = this.context.currentTime;
             // if next trial is in range of now - ahead
             if (this._next < n + this._ahead) {
                 // call content generator: with start time and loop index
