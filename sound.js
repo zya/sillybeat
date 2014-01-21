@@ -10,7 +10,7 @@ function Sound(context,searchparameters){
 	//get sounds from soundcloud
 	SC.get('/tracks',searchparameters,function(tracks){
 		
-		console.log(tracks);
+		
 		//find the downloadable ones
 		for(var i = 0; i < tracks.length; i++){
 				//keep the downloadable ones
@@ -20,7 +20,6 @@ function Sound(context,searchparameters){
 		}	
 
 		//load a random one from the downloadable results
-		console.log(that.searchResults);
 		var random = Math.floor(Math.random() * that.searchResults.length);
 		var source = that.searchResults[random].download_url + '?client_id=e553081039dc6507a7c3ebf6211e4590';
 		//load the sound
@@ -43,18 +42,26 @@ function Sound(context,searchparameters){
 			});
 		};
 		request.send();
+
+	},function(){
+		//get failed
+		console.log('get failed');
 	});
 }
 
 //play method
-Sound.prototype.start = function(next){
+Sound.prototype.start = function(next,offset){
 	var that = this;
 	if(this.loaded){
 		that.source = that.context.createBufferSource();
 		that.source.buffer = that.buffer;
 		that.source.connect(that.context.destination);
-		that.source.start(next);
+		that.source.start(next,offset);
 		//that.source.stop(now+1);
 	}
 	
+};
+
+Sound.prototype.stop = function(time){
+	this.source.stop(time);
 };
