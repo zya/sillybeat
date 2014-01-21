@@ -6,7 +6,7 @@ var generateParameters = function(query,tags,durationFrom,durationTo){
 			to: durationTo
 		},
 	
-		limit: 50,
+		limit: 80,
 		q: query,
 		tags: tags,
 

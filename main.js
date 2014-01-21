@@ -1,23 +1,5 @@
 
 
-//search parameters - kick
-var parameters = {
-
-	duration:{
-		from: 100,
-		to: 2000
-	},
-	
-	limit: 60,
-	q: "kick",
-	tags: "kick,",
-
-	//randomises the date for different results
-	created_at:{
-		to: new Date(2000 + Math.floor(Math.random() * 4) + 10,Math.floor(Math.random() * 8),1)
-	}
-};
-
 window.onload = function(){
 	//global variables
 	var context = new webkitAudioContext();
@@ -35,7 +17,7 @@ window.onload = function(){
 	var snareParams = generateParameters("snare","snare,",100,5000);
 	var hatParams = generateParameters("hihat","hihat,",100,1000);
 	//fx - pad - choir
-	var sampleParams = generateParameters("pad","",Math.round((Math.random() * 50000) + 5000),60000);
+	var sampleParams = generateParameters("pad","",Math.round((Math.random() * 10000) + 5000),50000);
 	var percParams = generateParameters("percussion","",100,3000);
 	//load the sounds
 	var kick = new Sound(context,kickParams);
@@ -53,7 +35,7 @@ window.onload = function(){
 		kick.stop(next + quarterNote);
 		snare.start(next + (quarterNote * 2));
 		perc.start(next + (quarterNote * 3));
-		perc.stop(next + (quarterNote * 4));
+		perc.stop(next + (quarterNote * 3.5));
 		hat.start(next);
 		hat.start(next + quarterNote);
 		hat.start(next + quarterNote * 2);
