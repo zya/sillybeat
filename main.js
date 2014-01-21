@@ -33,8 +33,8 @@ window.onload = function(){
 	guiinit();
 	
 	//load the sounds
-
 	var ssound = new Sound(context,parameters);
+	
 	var l = new loop(function(next){
 		ssound.start(next);
 	},0,0.5,context);
