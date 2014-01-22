@@ -1,4 +1,6 @@
 var generateParameters = function(query,tags,durationFrom,durationTo){
+	var date = new Date(2000 + Math.floor(Math.random() * 4) + 10,Math.floor(Math.random() * 12),Math.floor(Math.random()* 30));
+	
 	var parameters = {
 
 		duration:{
@@ -11,9 +13,11 @@ var generateParameters = function(query,tags,durationFrom,durationTo){
 		tags: tags,
 
 		//randomises the date for different results
+		
 		created_at:{
-			to: new Date(2000 + Math.floor(Math.random() * 4) + 10,Math.floor(Math.random() * 8),1)
+			to: date
 		}
+		
 	}
 
 	return parameters;

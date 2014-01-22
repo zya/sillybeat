@@ -6,6 +6,7 @@ function Sound(context,searchparameters){
 	this.loaded = false;
 	this.context = context;
 	this.searchResults = [];
+	this.playbackRate = 1;
 	
 	//get sounds from soundcloud
 	SC.get('/tracks',searchparameters,function(tracks){
@@ -17,7 +18,9 @@ function Sound(context,searchparameters){
 				if(tracks[i].downloadable){
 					that.searchResults.push(tracks[i]);
 				}
-		}	
+		}
+
+
 
 		//load a random one from the downloadable results
 		var random = Math.floor(Math.random() * that.searchResults.length);
@@ -34,12 +37,15 @@ function Sound(context,searchparameters){
 				that.loaded = true;
 			},function(){
 				//if failed - try another one
-				console.log('request failed');
+				console.log('audio decode failed');
 				var random = Math.floor(Math.random() * that.searchResults.length);
 				var source = that.searchResults[random].download_url + '?client_id=e553081039dc6507a7c3ebf6211e4590';
 				request.open('GET',source,true);
 				request.send();
 			});
+		};
+		request.onerror = function(){
+			console.log('XML HTTP failed');
 		};
 		request.send();
 
@@ -54,6 +60,7 @@ Sound.prototype.start = function(next,offset){
 	var that = this;
 	if(this.loaded){
 		that.source = that.context.createBufferSource();
+		that.source.playbackRate = that.playbackRate;
 		that.source.buffer = that.buffer;
 		that.source.connect(that.context.destination);
 		that.source.start(next,offset);

@@ -13,12 +13,12 @@ window.onload = function(){
 	
 	
 	//generate search params - query,tags,durationfrom,durationto
-	var kickParams = generateParameters("kick","kick,",100,5000);
-	var snareParams = generateParameters("snare","snare,",100,5000);
-	var hatParams = generateParameters("hihat","hihat,",100,1000);
+	var kickParams = generateParameters("808 kick","",100, 5000);
+	var snareParams = generateParameters("snare","",100,10000);
+	var hatParams = generateParameters("hihat","",100,10000);
 	//fx - pad - choir
-	var sampleParams = generateParameters("pad","",Math.round((Math.random() * 10000) + 5000),50000);
-	var percParams = generateParameters("percussion","",100,3000);
+	var sampleParams = generateParameters("","",5000,500000);
+	var percParams = generateParameters("percussion","",0,Math.random() * 3000);
 	//load the sounds
 	var kick = new Sound(context,kickParams);
 	var snare = new Sound(context,snareParams);
@@ -27,33 +27,65 @@ window.onload = function(){
 	var sample = new Sound(context,sampleParams);
 	
 	//choose a random tempo
-	var speed = (Math.random() * 3) + 0.8;
+	var speed = (Math.random() * 3) + 1.5;
 	var quarterNote = speed / 4;
+	var eightNote = speed / 8;
+	var sixteenthNote = speed / 16;
+
+	//generating patterns
+	var hatPattern = generatePattern();
+	var samplePattern = generatePattern();
+	var sampleOffsetPattern = generateOffsetPattern();
+
+	
 	
 	var l = new loop(function(next){
-		kick.start(next);
-		kick.stop(next + quarterNote);
-		snare.start(next + (quarterNote * 2));
-		perc.start(next + (quarterNote * 3));
-		perc.stop(next + (quarterNote * 3.5));
-		hat.start(next);
-		hat.start(next + quarterNote);
-		hat.start(next + quarterNote * 2);
-		hat.start(next + quarterNote * 3);
-		//hat.start(next + eightNote * 4);
+		
+		if(kick.loaded){
+
+			kick.start(next);
+			
+			kick.stop(next + quarterNote);
+		}
+		
+		if(snare.loaded){
+			snare.start(next + (quarterNote * 2));
+			snare.stop(next + (quarterNote * 2) + eightNote);
+		}
+		
+		
+		if(perc.loaded){
+			
+			perc.start(next + (quarterNote * 3));
+			perc.stop(next + (quarterNote * 3.5));
+		}
+		
+		
+		if(hat.loaded){
+
+			for(var i=0; i < hatPattern.length;i++){
+				if(hatPattern[i]){
+					hat.start(next + (sixteenthNote * i));
+					hat.stop(next + (sixteenthNote * i) + sixteenthNote);
+				}
+			}
+			
+		}
 
 		if(sample.loaded){
-			var offset = Math.random() * (sample.buffer.duration / 1.5);
-			sample.start(next,offset);
-			sample.stop(next + speed);
+			
+			for(var i=0; i < samplePattern.length;i++){
+				if(samplePattern[i]){
 
-			sample.source.playbackRate.value = 0.5;
-			sample.start(next,offset);
-			sample.stop(next + speed);
+					var offset = sampleOffsetPattern[i] * (sample.buffer.duration);
+					//sample.playbackRate = Math.round(Math.random() * 2);
+					sample.start(next + (sixteenthNote * i),offset);
+					
 
-			sample.source.playbackRate.value = 2;
-			sample.start(next,offset);
-			sample.stop(next + speed);
+					sample.stop(next + (sixteenthNote * i) + (sixteenthNote / 2 ));
+				}
+			}
+			
 		
 		}else{
 			console.log('sample not loaded yet');
@@ -65,8 +97,6 @@ window.onload = function(){
 	setTimeout(function(){
 		l.start();
 	},7000);
-	
-
 	
 
 };
