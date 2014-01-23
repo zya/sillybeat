@@ -9,7 +9,8 @@ function Sound(context,searchparameters){
 	this.playbackRate = 1;
 	
 	//get sounds from soundcloud
-	SC.get('/tracks',searchparameters,function(tracks){
+	setTimout(function(){
+		SC.get('/tracks',searchparameters,function(tracks){
 		
 		
 		//find the downloadable ones
@@ -47,10 +48,13 @@ function Sound(context,searchparameters){
 		};
 		request.send();
 
-	},function(){
-		//get failed
-		console.log('get failed');
-	});
+		},function(){
+			//get failed
+			console.log('get failed');
+		});
+		
+	},50);
+	
 }
 
 //play method
