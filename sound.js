@@ -9,7 +9,7 @@ function Sound(context,searchparameters){
 	this.playbackRate = 1;
 	
 	//get sounds from soundcloud
-	setTimout(function(){
+	setTimeout(function(){
 		SC.get('/tracks',searchparameters,function(tracks){
 		
 		
@@ -52,7 +52,7 @@ function Sound(context,searchparameters){
 			//get failed
 			console.log('get failed');
 		});
-		
+
 	},50);
 	
 }
