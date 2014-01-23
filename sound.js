@@ -1,4 +1,23 @@
 //sound class
+var createCORSRequest = function(method,url){
+	var xhr = new XMLHttpRequest();
+
+	if("withCredentials" in xhr){
+		//most browsers
+		xhr.open(method,url,true);
+	}else if(typeof XDomainRequest != "undefined"){
+		//IE
+		xhr = new XDomainRequest();
+    	xhr.open(method, url);
+	}else{
+		//cors is not supported
+		xhr = null;
+		console.log('cors is not supported');
+	}
+	return xhr;
+};
+
+//sound loader
 function Sound(context,searchparameters){
 
 	var that = this;
@@ -9,8 +28,7 @@ function Sound(context,searchparameters){
 	this.playbackRate = 1;
 	
 	//get sounds from soundcloud
-	setTimeout(function(){
-		SC.get('/tracks',searchparameters,function(tracks){
+	SC.get('/tracks',searchparameters,function(tracks){
 		
 		
 		//find the downloadable ones
@@ -25,6 +43,29 @@ function Sound(context,searchparameters){
 		var random = Math.floor(Math.random() * that.searchResults.length);
 		var source = that.searchResults[random].download_url + '?client_id=e553081039dc6507a7c3ebf6211e4590';
 		//load the sound
+		var request = createCORSRequest('GET',source);
+		request.responseType = "arraybuffer";
+
+		request.onload = function(){
+			that.context.decodeAudioData(request.response,function(b){
+				that.buffer = b;
+				that.loaded = true;
+			},function(){
+				//decode failed
+				var random = Math.floor(Math.random() * that.searchResults.length);
+				var source = that.searchResults[random].download_url + '?client_id=e553081039dc6507a7c3ebf6211e4590';
+				request.open('GET',source,true);
+				request.send();
+			});
+		};
+
+		request.onerror = function(){
+
+		};
+
+		request.send();
+
+		/*
 		var request = new XMLHttpRequest();
 		request.open('GET',source,true);
 		request.responseType = "arraybuffer";
@@ -43,18 +84,17 @@ function Sound(context,searchparameters){
 				request.send();
 			});
 		};
+
 		request.onerror = function(){
 			console.log('XML HTTP failed');
 		};
 		request.send();
+		*/
 
-		},function(){
-			//get failed
-			console.log('get failed');
-		});
-
-	},50);
-	
+	},function(){
+		//get failed
+		console.log('get failed');
+	});
 }
 
 //play method
