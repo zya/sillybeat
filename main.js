@@ -13,18 +13,29 @@ window.onload = function(){
 	
 	
 	//generate search params - query,tags,durationfrom,durationto
-	var kickParams = generateParameters("808 kick","",100, 5000);
+	var kickParams = generateParameters("808 kick","",100, 1000);
+	var kick = new Sound(context,kickParams);
+	/*
 	var snareParams = generateParameters("snare","",100,10000);
 	var hatParams = generateParameters("hihat","",100,10000);
 	//fx - pad - choir
 	var sampleParams = generateParameters("","",5000,500000);
 	var percParams = generateParameters("percussion","",0,Math.random() * 3000);
 	//load the sounds
-	var kick = new Sound(context,kickParams);
+	
 	var snare = new Sound(context,snareParams);
 	var hat = new Sound(context,hatParams);
 	var perc = new Sound(context,percParams);
 	var sample = new Sound(context,sampleParams);
+	
+	
+
+	//generating patterns
+	var hatPattern = generatePattern();
+	var samplePattern = generatePattern();
+	var sampleOffsetPattern = generateOffsetPattern();
+	*/
+
 	
 	//choose a random tempo
 	var speed = (Math.random() * 3) + 1.5;
@@ -32,22 +43,14 @@ window.onload = function(){
 	var eightNote = speed / 8;
 	var sixteenthNote = speed / 16;
 
-	//generating patterns
-	var hatPattern = generatePattern();
-	var samplePattern = generatePattern();
-	var sampleOffsetPattern = generateOffsetPattern();
-
-	
-	
 	var l = new loop(function(next){
 		
 		if(kick.loaded){
 
 			kick.start(next);
-			
-			kick.stop(next + quarterNote);
+			kick.start(next + quarterNote);
 		}
-		
+		/*
 		if(snare.loaded){
 			snare.start(next + (quarterNote * 2));
 			snare.stop(next + (quarterNote * 2) + eightNote);
@@ -90,13 +93,13 @@ window.onload = function(){
 		}else{
 			console.log('sample not loaded yet');
 		}
-		
+		*/
 
 	},0,speed,context);
 	
 	setTimeout(function(){
 		l.start();
-	},7000);
+	},2000);
 	
 
 };
