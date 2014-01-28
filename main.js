@@ -44,12 +44,13 @@ window.onload = function(){
 	var sixteenthNote = speed / 16;
 
 	var l = new loop(function(next){
-		
+		/*
 		if(kick.loaded){
 
 			kick.start(next);
 			kick.start(next + quarterNote);
 		}
+		/*
 		/*
 		if(snare.loaded){
 			snare.start(next + (quarterNote * 2));
