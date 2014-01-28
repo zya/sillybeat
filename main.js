@@ -44,6 +44,8 @@ window.onload = function(){
 	var sixteenthNote = speed / 16;
 
 	var l = new loop(function(next){
+
+		//here i play the sounds 
 		/*
 		if(kick.loaded){
 
