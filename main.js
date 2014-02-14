@@ -13,7 +13,7 @@ window.onload = function(){
 	
 	
 	//generate search params - query,tags,durationfrom,durationto
-	var kickParams = generateParameters("808 kick","",100, 1000);
+	var kickParams = generateParameters("kick","",100, 1000);
 	var kick = new Sound(context,kickParams);
 	/*
 	var snareParams = generateParameters("snare","",100,10000);
