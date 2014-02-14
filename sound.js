@@ -1,4 +1,4 @@
-//sound loader
+// THE SOUND CLASS
 function Sound(context,searchparameters){
 
 	var that = this;
@@ -11,11 +11,12 @@ function Sound(context,searchparameters){
 	SC.get('/tracks',searchparameters,function(tracks){
 		
 		var random = Math.floor(Math.random() * tracks.length); //choose a random one
-		that.url = tracks[random].stream_url + '?client_id=e553081039dc6507a7c3ebf6211e4590';
+		
+		that.url = tracks[random].download_url + '?client_id=e553081039dc6507a7c3ebf6211e4590';
+		console.log(that.url);
 		
 		//load the buffer - decode it and return buffer
 		
-
 	},function(){
 		//get failed
 		console.log('get failed');
