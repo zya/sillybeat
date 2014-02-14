@@ -1,7 +1,9 @@
-var generatePattern = function(){
+var generatePattern = function(probability){
 	var array = [];
 	for(var i =0; i < 16; i++){
-		var random = Math.round(Math.random());
+		var random = Math.round(Math.random() * probability);
+
+		//the higher the probability - the lower the chance
 		if(random === 1){
 			array[i] = true;
 		}
@@ -16,3 +18,4 @@ var generateOffsetPattern = function(){
 	}
 	return array;
 };
+

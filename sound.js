@@ -42,13 +42,18 @@ function Sound(context,searchparameters){
 }
 
 //play method
-Sound.prototype.start = function(next,offset){
+Sound.prototype.start = function(next,offset,duration){
 	
 	//create the buffer
+	this.source = this.context.createBufferSource();
+	this.source.buffer = this.buffer;
+	this.source.connect(this.context.destination);
+	this.source.start(next,offset);
+	
 	
 };
 
 Sound.prototype.stop = function(time){
-	
+	this.source.stop(time);
 
 };

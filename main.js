@@ -13,10 +13,10 @@ window.onload = function(){
 	
 	
 	//generate search params - query,tags,durationfrom,durationto
-	var kickParams = generateParameters("kick","",100, 1000);
+	var kickParams = generateParameters("808 kick","",100, 1000);
 	var kick = new Sound(context,kickParams);
-	/*
 	var snareParams = generateParameters("snare","",100,10000);
+	
 	var hatParams = generateParameters("hihat","",100,10000);
 	//fx - pad - choir
 	var sampleParams = generateParameters("","",5000,500000);
@@ -24,6 +24,7 @@ window.onload = function(){
 	//load the sounds
 	
 	var snare = new Sound(context,snareParams);
+	
 	var hat = new Sound(context,hatParams);
 	var perc = new Sound(context,percParams);
 	var sample = new Sound(context,sampleParams);
@@ -31,10 +32,11 @@ window.onload = function(){
 	
 
 	//generating patterns
-	var hatPattern = generatePattern();
-	var samplePattern = generatePattern();
+	var hatPattern = generatePattern(1);
+	var samplePattern = generatePattern(1);
+	var kickPattern = generatePattern(4);
 	var sampleOffsetPattern = generateOffsetPattern();
-	*/
+	
 
 	
 	//choose a random tempo
@@ -46,14 +48,19 @@ window.onload = function(){
 	var l = new loop(function(next){
 
 		//here i play the sounds 
-		/*
+		
 		if(kick.loaded){
 
-			kick.start(next);
-			kick.start(next + quarterNote);
+			for(var i=0; i < kickPattern.length;i++){
+				if(kickPattern[i]){
+					kick.start(next + (sixteenthNote * i));
+					kick.stop(next + (sixteenthNote * i) + sixteenthNote);
+				}
+			}
+			
 		}
-		/*
-		/*
+		
+		
 		if(snare.loaded){
 			snare.start(next + (quarterNote * 2));
 			snare.stop(next + (quarterNote * 2) + eightNote);
@@ -88,7 +95,7 @@ window.onload = function(){
 					sample.start(next + (sixteenthNote * i),offset);
 					
 
-					sample.stop(next + (sixteenthNote * i) + (sixteenthNote / 2 ));
+					sample.stop(next + (sixteenthNote * i) + (sixteenthNote / 1.3));
 				}
 			}
 			
@@ -96,13 +103,13 @@ window.onload = function(){
 		}else{
 			console.log('sample not loaded yet');
 		}
-		*/
+		
 
 	},0,speed,context);
 	
 	setTimeout(function(){
 		l.start();
-	},2000);
+	},5000);
 	
 
 };
