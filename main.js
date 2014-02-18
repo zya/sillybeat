@@ -24,20 +24,16 @@ window.onload = function(){
 	//load the sounds
 	
 	var snare = new Sound(context,snareParams);
-	
 	var hat = new Sound(context,hatParams);
 	var perc = new Sound(context,percParams);
 	var sample = new Sound(context,sampleParams);
 	
-	
 
 	//generating patterns
-	var hatPattern = generatePattern(1);
+	var hatPattern = generatePattern(3);
 	var samplePattern = generatePattern(1);
 	var kickPattern = generatePattern(4);
 	var sampleOffsetPattern = generateOffsetPattern();
-	
-
 	
 	//choose a random tempo
 	var speed = (Math.random() * 3) + 1.5;
@@ -107,9 +103,10 @@ window.onload = function(){
 
 	},0,speed,context);
 	
+	/*
 	setTimeout(function(){
 		l.start();
 	},5000);
-	
+	*/
 
 };
