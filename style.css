@@ -10,10 +10,50 @@ body{
 	height: 100%;
 	padding: 0;
 	margin: 0;
+	overflow: hidden;
 }
-#panel{
+.container{
 	width: 100%;
 	height: 100%;
-	padding: 0;
-	margin: 0;
 }
+
+#head{
+	height: 25%;
+}
+
+#visual{
+	height: 30%;
+}
+
+#buttons{
+	height: 25%;
+	text-align: center;
+	font-family: 'Telex', sans-serif;
+}
+
+#indic{
+	height: 20%;
+}
+
+#title{
+	font-family: 'Telex', sans-serif;
+	color: black;
+	text-align: center;
+}
+#spinnerTarget{
+	width: 20px;
+	height: 20px;
+	margin: auto;
+}
+
+.col-md-2{
+	font-family: 'Telex', sans-serif;
+	height: 100px;
+	text-align: center;
+}
+
+
+.butt{
+	font-size: 80px;
+}
+

@@ -1,5 +1,5 @@
 // THE SOUND CLASS
-function Sound(context,searchparameters){
+function Sound(context,searchparameters,callbackfunction){
 
 	var that = this;
 	this.loaded = false;
@@ -25,7 +25,7 @@ function Sound(context,searchparameters){
 			that.context.decodeAudioData(that.request.response, function(b){
 				that.buffer = b;
 				that.loaded = true;
-				console.log(that.buffer);
+				callbackfunction();
 			},function(){
 				console.log('decode failed');
 			});

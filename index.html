@@ -4,24 +4,93 @@
 	
 	<head>
 		<title>SoundCloud Generative Test</title>
+		<meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=no'/>
 		
-		<link rel="stylesheet" type="text/css" href="style.css">
-		<script src="libs/jquery-1.10.2.min.js"></script>
+		
+		<script src="libs/js/jquery-1.10.2.min.js"></script>
+		<script src="libs/js/bootstrap.min.js"></script>
 		<script src="http://connect.soundcloud.com/sdk.js"></script>
+		<script src="libs/js/spin.min.js"></script>
+		<script src="libs/js/snap.svg.js"></script>
 		
 		<script src='gui.js'></script>
 		<script src='loop.js'></script>
-
 		<script src='parameters.js'></script>
 		<script src='patterns.js'></script>
 		<script src='sound.js'></script>
-
 		<script src="main.js"></script>
+
+		
+		<link rel="stylesheet" type="text/css" href="libs/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="libs/css/bootstrap-theme.min.css">
+		<link href='http://fonts.googleapis.com/css?family=Telex' rel='stylesheet' type='text/css'>
+
+		<link rel="stylesheet" type="text/css" href="style.css">
 
 	</head>
 	
 
 	<body>
+		<div class='container'>
+			<div class='row' id='head'>
+				<br>
+				<h2 class='col-md-12'id='title'><b>Silly Beat</b><br><small> makes silly beats out of random soundcloud crap</small></h2>
+			</div>
+			<div class='row' id='visual'>
+
+			</div>
+			
+			<div class='row' id='buttons'>
+
+				<div class='col-md-3 col-sm-3'></div>
+				<div class='col-md-2 col-sm-2'>
+					<span class='glyphicon glyphicon-refresh butt' id='newSounds'></span><br><br>
+					<div><small>Get New Sounds</small></div>
+				</div>
+
+				<div class='col-md-2 col-sm-2'>
+					<span class='glyphicon glyphicon-refresh butt'></span><br><br>
+					<div><small>Make New Patterns</small></div>
+				</div>
+				<div class='col-md-2 col-sm-2'>
+					<span class='glyphicon glyphicon-play butt' id='play'></span><br><br>
+					<div><small>Play / Pause</small></div>
+				</div>
+				<div class='col-md-3 col-sm-3'></div>
+			</div>
+			
+			<div class='row' id='indic'>
+				<div class='col-md-1 col-sm-1'></div>
+				<div class='col-md-2 col-sm-2'>
+					<div><small>Kick</small></div> </br>
+					<div id='spinnerTargetKick'></div>
+				</div>
+
+				<div class='col-md-2 col-sm-2'>
+					<div><small>Snare</small></div> </br>
+					<div id='spinnerTargetSnare'></div>
+				</div>
+
+				<div class='col-md-2 col-sm-2'>
+					<div><small>Hihat</small></div> </br>
+					<div id='spinnerTargetHihat'></div>
+				</div>
+
+				<div class='col-md-2 col-sm-2'>
+					<div><small>Percussion</small></div> </br>
+					<div id='spinnerTargetPerc'></div>
+				</div>
+
+				<div class='col-md-2 col-sm-2'>
+					<div><small>Sample</small></div> </br>
+					<div id='spinnerTargetSamp'></div>
+				</div>
+
+				<div class='col-md-1 col-sm-1'></div>
+
+
+			</div>
+		</div>
 		
 	</body>
 </html>

@@ -3,30 +3,60 @@
 window.onload = function(){
 	//global variables
 	var context = new webkitAudioContext();
+	var global = {
+		isPlaying: false
+	};
 	
+	//object that holds the spinner objects
+	var spinners = {
+
+		kickSpinner: null,
+		snareSpinner: null,
+		hatSpinner: null,
+		percSpinner: null,
+		sampSpinner: null
+
+	};
+
+
 	//initialize soundcloud sdk
 	SC.initialize({
     	client_id : 'e553081039dc6507a7c3ebf6211e4590'
 	});
 	//init gui
-	guiinit();
-	
 	
 	//generate search params - query,tags,durationfrom,durationto
 	var kickParams = generateParameters("808 kick","",100, 1000);
-	var kick = new Sound(context,kickParams);
 	var snareParams = generateParameters("snare","",100,10000);
-	
 	var hatParams = generateParameters("hihat","",100,10000);
-	//fx - pad - choir
 	var sampleParams = generateParameters("","",5000,500000);
-	var percParams = generateParameters("percussion","",0,Math.random() * 3000);
-	//load the sounds
+	var percParams = generateParameters("percussion","",0,3000);
 	
-	var snare = new Sound(context,snareParams);
-	var hat = new Sound(context,hatParams);
-	var perc = new Sound(context,percParams);
-	var sample = new Sound(context,sampleParams);
+	//load the sounds
+	var kick = new Sound(context,kickParams,function(){
+		console.log('kick loaded');
+		spinners.kickSpinner.stop();
+	});
+	
+	var snare = new Sound(context,snareParams,function(){
+		console.log('snare loaded');
+		spinners.snareSpinner.stop();
+	});
+	
+	var hat = new Sound(context,hatParams,function(){
+		console.log('hat loaded');
+		spinners.hatSpinner.stop();
+	});
+	
+	var perc = new Sound(context,percParams,function(){
+		console.log('perc loaded');
+		spinners.percSpinner.stop();
+	});
+	
+	var sample = new Sound(context,sampleParams,function(){
+		console.log('sample loaded');
+		spinners.sampSpinner.stop();
+	});
 	
 
 	//generating patterns
@@ -41,6 +71,7 @@ window.onload = function(){
 	var eightNote = speed / 8;
 	var sixteenthNote = speed / 16;
 
+	//the loop function run every bar
 	var l = new loop(function(next){
 
 		//here i play the sounds 
@@ -103,10 +134,9 @@ window.onload = function(){
 
 	},0,speed,context);
 	
-	/*
-	setTimeout(function(){
-		l.start();
-	},5000);
-	*/
+	
+	guiinit(global,spinners);
+
+	
 
 };
