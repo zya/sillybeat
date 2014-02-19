@@ -1,6 +1,6 @@
-function guiinit(global, spinners){
+function guiinit(global, spinners, startcallback, stopcallback, soundrefreshcallback, patternsrefreshcallback, nodes){
 	//spinner params
-	
+
 	var params = {
 
 		lines: 17, // The number of lines to draw
@@ -39,19 +39,90 @@ function guiinit(global, spinners){
 	//spinner.stop();
 
 	$('#newSounds').click(function(){
-		$(this).animate({
-			
-		},1000);
+		soundrefreshcallback();
+
+		spinners.kickSpinner = new Spinner(params).spin(spinnerTargetKick);
+		spinners.snareSpinner = new Spinner(params).spin(spinnerTargetSnare);
+		spinners.hatSpinner = new Spinner(params).spin(spinnerTargetHihat);
+		spinners.percSpinner = new Spinner(params).spin(spinnerTargetPerc);
+		spinners.sampSpinner = new Spinner(params).spin(spinnerTargetSamp);
+	});
+
+	$('#newPatterns').click(function(){
+		patternsrefreshcallback();
 	});
 
 	$('#play').click(function(){
 		if(global.isPlaying){
 			$(this).attr('class','glyphicon glyphicon-play butt');
 			global.isPlaying = false;
+			stopcallback();
+
 		}else {
 			$(this).attr('class','glyphicon glyphicon-pause butt');
 			global.isPlaying = true;
+			startcallback();
 		}
 	});
+
+	$('.vol').click(function(e){
+		e.preventDefault();
+		if($(this).attr('class') === 'glyphicon glyphicon-volume-up vol'){
+			$(this).attr('class','glyphicon glyphicon-volume-off vol');
+			var id = $(this).attr('id');
+			switch(id){
+				case 'kickvol':
+					nodes.kick.gain.value = 0;
+
+				break;
+
+				case'snarevol':
+					nodes.snare.gain.value = 0;
+				break;
+
+				case 'hatvol':
+					nodes.hat.gain.value = 0;
+				break;
+
+				case'percvol':
+					nodes.perc.gain.value = 0;
+
+				break;
+
+				case'sampvol':
+					nodes.samp.gain.value = 0;
+				break;
+			}
+		}else{
+			$(this).attr('class','glyphicon glyphicon-volume-up vol');
+			var id = $(this).attr('id');
+			switch(id){
+				case 'kickvol':
+					nodes.kick.gain.value = 1;
+
+				break;
+
+				case'snarevol':
+					nodes.snare.gain.value = 0.8;
+				break;
+
+				case 'hatvol':
+					nodes.hat.gain.value = 0.4;
+				break;
+
+				case'percvol':
+					nodes.perc.gain.value = 0.8;
+
+				break;
+
+				case'sampvol':
+					nodes.samp.gain.value = 1.2;
+				break;
+			}
+		}
+		
+	});
+
+
 }
 

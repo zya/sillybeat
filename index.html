@@ -7,7 +7,7 @@
 		<meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=no'/>
 		
 		
-		<script src="libs/js/jquery-1.10.2.min.js"></script>
+		<script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
 		<script src="libs/js/bootstrap.min.js"></script>
 		<script src="http://connect.soundcloud.com/sdk.js"></script>
 		<script src="libs/js/spin.min.js"></script>
@@ -17,6 +17,7 @@
 		<script src='loop.js'></script>
 		<script src='parameters.js'></script>
 		<script src='patterns.js'></script>
+		<script src='fx.js'></script>
 		<script src='sound.js'></script>
 		<script src="main.js"></script>
 
@@ -41,7 +42,7 @@
 			</div>
 			
 			<div class='row' id='buttons'>
-
+				<br>
 				<div class='col-md-3 col-sm-3'></div>
 				<div class='col-md-2 col-sm-2'>
 					<span class='glyphicon glyphicon-refresh butt' id='newSounds'></span><br><br>
@@ -49,7 +50,7 @@
 				</div>
 
 				<div class='col-md-2 col-sm-2'>
-					<span class='glyphicon glyphicon-refresh butt'></span><br><br>
+					<span class='glyphicon glyphicon-refresh butt' id='newPatterns'></span><br><br>
 					<div><small>Make New Patterns</small></div>
 				</div>
 				<div class='col-md-2 col-sm-2'>
@@ -60,30 +61,42 @@
 			</div>
 			
 			<div class='row' id='indic'>
+				<br><br>
 				<div class='col-md-1 col-sm-1'></div>
 				<div class='col-md-2 col-sm-2'>
+					<div id='spinnerTargetKick'></div><br>
 					<div><small>Kick</small></div> </br>
-					<div id='spinnerTargetKick'></div>
+					<a target="_blank" href="" id='kicklink'><span class='glyphicon glyphicon-link link'></span></a><br>
+					<span class='glyphicon glyphicon-volume-up vol' id='kickvol'></span>
 				</div>
 
 				<div class='col-md-2 col-sm-2'>
+					<div id='spinnerTargetSnare'></div><br>
 					<div><small>Snare</small></div> </br>
-					<div id='spinnerTargetSnare'></div>
+					<a target="_blank" href="" id='snarelink'><span class='glyphicon glyphicon-link link'></span></a><br>
+					<span class='glyphicon glyphicon-volume-up vol' id='snarevol'></span>
 				</div>
 
 				<div class='col-md-2 col-sm-2'>
+					<div id='spinnerTargetHihat'></div><br>
 					<div><small>Hihat</small></div> </br>
-					<div id='spinnerTargetHihat'></div>
+					<a target="_blank" href="" id='hatlink'><span class='glyphicon glyphicon-link link'></span></a><br>
+					<span class='glyphicon glyphicon-volume-up vol' id='hatvol'></span>
 				</div>
 
 				<div class='col-md-2 col-sm-2'>
+					<div id='spinnerTargetPerc'></div><br>
 					<div><small>Percussion</small></div> </br>
-					<div id='spinnerTargetPerc'></div>
+					<a target="_blank" href="" id='perclink'><span class='glyphicon glyphicon-link link'></span></a><br>
+					<span class='glyphicon glyphicon-volume-up vol' id='percvol'></span>
 				</div>
 
 				<div class='col-md-2 col-sm-2'>
+					<div id='spinnerTargetSamp'></div></br>
 					<div><small>Sample</small></div> </br>
-					<div id='spinnerTargetSamp'></div>
+					<a target="_blank" href="" id='samplink'><span class='glyphicon glyphicon-link link'></span></a><br>
+					<span class='glyphicon glyphicon-volume-up vol' id='sampvol'></span><br>
+					
 				</div>
 
 				<div class='col-md-1 col-sm-1'></div>

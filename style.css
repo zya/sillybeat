@@ -18,11 +18,12 @@ body{
 }
 
 #head{
-	height: 25%;
+	height: 18%;
 }
 
 #visual{
-	height: 30%;
+	height: 32%;
+	background-color: grey;
 }
 
 #buttons{
@@ -32,7 +33,8 @@ body{
 }
 
 #indic{
-	height: 20%;
+	height: 25%;
+	background-color: grey;
 }
 
 #title{
@@ -55,5 +57,29 @@ body{
 
 .butt{
 	font-size: 80px;
+	cursor: pointer;
 }
+
+.butt:hover{
+	color: grey;
+}
+
+.link{
+	color: black;
+	cursor: pointer;
+
+}
+.link:hover{
+	color: white;
+}
+
+.vol{
+	color: black;
+}
+
+.vol:hover{
+	color: white;
+}
+
+
 
