@@ -1,7 +1,7 @@
 window.onload = function(){
 
-	var protocol = location.protocol === 'http:' ? 'http:' : 'https:';
-  	var cors_api_url = protocol + '//sillybeat.herokuapp.com/';
+	//var protocol = location.protocol === 'http:' ? 'http:' : 'https:';
+  	var cors_api_url = window.location.origin;
   	console.log(cors_api_url);
 	//global variables
 	var context = new webkitAudioContext();
