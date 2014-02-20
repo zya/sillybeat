@@ -209,7 +209,7 @@ window.onload = function(){
 			spinners.kickSpinner.stop();
 		});
 
-		snare = new Sound(context,snareParams, cors_api_url,snareGain,function(){
+		snare = new Sound(context,cors_api_url,snareParams,,snareGain,function(){
 			console.log('snare loaded');
 			$('#snarelink').attr('href',snare.permalink);
 			spinners.snareSpinner.stop();
