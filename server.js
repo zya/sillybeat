@@ -5,7 +5,7 @@ var directory = '/public/';
 var app = connect().use(connect.static('public'));
 
 var port = Number(process.env.PORT || 5000);
-Tes
+
 var host = process.env.HOST ? '0.0.0.0' : '127.0.0.1';
 
 http.createServer(app).listen(port);
