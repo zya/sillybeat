@@ -13,11 +13,22 @@ http.createServer(app).listen(port);
 var cors_proxy = require('cors-anywhere');
 
 cors_proxy.createServer({
-	
-	requireHeader: ['origin', 'x-requested-with'],
-    removeHeaders: ['cookie', 'cookie2']
-
-}).listen(8080,host,function(){
-	console.log('cors-anywhere is running on ' + host + ':' + 8080);
+    requireHeader: ['origin', 'x-requested-with'],
+    removeHeaders: [
+        'cookie',
+        'cookie2',
+        // Strip Heroku-specific headers
+        'x-heroku-queue-wait-time',
+        'x-heroku-queue-depth',
+        'x-heroku-dynos-in-use',
+        'x-request-start'
+    ],
+    httpProxyOptions: {
+        enable: {
+            // Do not add X-Forwarded-For, etc. headers, because Heroku already adds it.
+            xforward: false
+        }
+    }
+}).listen(port, host, function() {
+    console.log('Running CORS Anywhere on ' + host + ':' + port);
 });
-
