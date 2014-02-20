@@ -3,7 +3,7 @@ function Reverb(context){
 	this.request = new XMLHttpRequest();
 	this.convolver = context.createConvolver();
 	var that = this;
-	this.url = 'audio/ir.wav';
+	this.url = 'audio/ir.mp3';
 	this.request.open('GET',that.url,true);
 	this.request.responseType = "arraybuffer";
 	
