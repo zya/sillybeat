@@ -17,7 +17,7 @@ function Sound(context,searchparameters,output,callbackfunction){
 		//make the url and prepare it for proxying
 		var url = tracks[random].stream_url + '?client_id=e553081039dc6507a7c3ebf6211e4590';
 		that.permalink = tracks[random].permalink_url;
-		that.url = 'http://sillybeat.herokuapp.com:8080/' +  url;
+		that.url = 'http://127.0.0.1:8080/' +  url;
 		
 		//load the buffer - decode it and return buffer
 		that.request = new XMLHttpRequest();
