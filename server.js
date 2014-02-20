@@ -5,11 +5,11 @@ var directory = '/public/';
 var app = connect().use(connect.static('public'));
 
 var port = Number(process.env.PORT || 5000);
+console.log(port);
 var host = process.env.PORT ? '0.0.0.0' : '127.0.0.1';
 console.log(port);
 
 http.createServer(app).listen(port);
-
 
 var cors_proxy = require('cors-anywhere');
 
