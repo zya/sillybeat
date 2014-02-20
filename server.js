@@ -19,6 +19,6 @@ cors_proxy.createServer({
     removeHeaders: ['cookie', 'cookie2']
 
 }).listen(8080,host,function(){
-	console.log('cors-anywhere is running on ' + host + ':' + 8888);
+	console.log('cors-anywhere is running on ' + host + ':' + 8080);
 });
 
