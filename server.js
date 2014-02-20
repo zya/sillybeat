@@ -4,14 +4,15 @@ var directory = '/public/';
 
 var app = connect().use(connect.static('public'));
 
-var port = Number(process.env.PORT || 5000);
 
-var host = process.env.HOST ? '0.0.0.0' : '127.0.0.1';
+
+var host = process.env.PORT ? '0.0.0.0' : '127.0.0.1';
+var port = process.env.PORT || 8080;
 
 http.createServer(app).listen(port);
 
-var cors_proxy = require('cors-anywhere');
 
+var cors_proxy = require('./lib/cors-anywhere');
 cors_proxy.createServer({
     requireHeader: ['origin', 'x-requested-with'],
     removeHeaders: [
