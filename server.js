@@ -30,6 +30,6 @@ cors_proxy.createServer({
             xforward: false
         }
     }
-}).listen(port, host, function() {
+}).listen(8080, host, function() {
     console.log('Running CORS Anywhere on ' + host + ':' + port);
 });
