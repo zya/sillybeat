@@ -4,7 +4,9 @@ var directory = '/public/';
 
 var app = connect().use(connect.static('public'));
 
-http.createServer(app).listen(8888);
+var port = Number(process.env.PORT || 8080);
+
+http.createServer(app).listen(port);
 
 var cors_proxy = require('cors-anywhere');
 
@@ -13,5 +15,5 @@ cors_proxy.createServer({
 	requireHeader: ['origin', 'x-requested-with'],
     removeHeaders: ['cookie', 'cookie2']
 
-}).listen(8080);
+}).listen(port);
 
