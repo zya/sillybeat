@@ -1,0 +1,12 @@
+{
+  "name": "sillybeat",
+  "version": "0.5.0",
+  "description": "makes silly beats out of random soundcloud crap",
+  "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zya/sillybeat.git"
+  },
+  "author": "ehsan-ziya ",
+  "license": "MIT"
+}
