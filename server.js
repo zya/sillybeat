@@ -8,6 +8,7 @@ var port = Number(process.env.PORT || 8080);
 
 http.createServer(app).listen(port);
 
+/*
 var cors_proxy = require('cors-anywhere');
 
 cors_proxy.createServer({
@@ -16,4 +17,4 @@ cors_proxy.createServer({
     removeHeaders: ['cookie', 'cookie2']
 
 }).listen(port);
-
+*/
