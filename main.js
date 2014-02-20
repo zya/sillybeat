@@ -202,32 +202,32 @@ window.onload = function(){
 	}
 
 	function refreshSounds(){
-		kick = new Sound(context,kickParams,kickGain,function(){
+		kick = new Sound(context, cors_api_url, kickParams,kickGain,function(){
 			console.log('kick loaded');
 			
 			$('#kicklink').attr('href',kick.permalink);
 			spinners.kickSpinner.stop();
 		});
 
-		snare = new Sound(context,snareParams,snareGain,function(){
+		snare = new Sound(context,snareParams, cors_api_url,snareGain,function(){
 			console.log('snare loaded');
 			$('#snarelink').attr('href',snare.permalink);
 			spinners.snareSpinner.stop();
 		});
 
-		hat = new Sound(context,hatParams,hatGain,function(){
+		hat = new Sound(context,cors_api_url,hatParams,hatGain,function(){
 			console.log('hat loaded');
 			$('#hatlink').attr('href',hat.permalink);
 			spinners.hatSpinner.stop();
 		});
 
-		perc = new Sound(context,percParams,percGain,function(){
+		perc = new Sound(context,cors_api_url,percParams,percGain,function(){
 			console.log('perc loaded');
 			$('#perclink').attr('href',perc.permalink);
 			spinners.percSpinner.stop();
 		});
 
-		sample = new Sound(context,sampleParams,sampGain,function(){
+		sample = new Sound(context,cors_api_url,sampleParams,sampGain,function(){
 			
 			console.log('sample loaded');
 			$('#samplink').attr('href',sample.permalink);
