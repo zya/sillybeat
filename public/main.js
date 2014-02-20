@@ -1,7 +1,9 @@
 window.onload = function(){
 
-	//var protocol = location.protocol === 'http:' ? 'http:' : 'https:';
-  	var cors_api_url = window.location.origin;
+	var protocol = location.protocol === 'http:' ? 'http:' : 'https:';
+	var cors_anywhere_port = 8080;
+  	var cors_api_url = protocol + '//' + window.location.hostname + ':' + cors_anywhere_port + '/';
+  	console.log(cors_api_url);
   	
 	//global variables
 	var context = new webkitAudioContext();
@@ -80,31 +82,31 @@ window.onload = function(){
 	var percParams = generateParameters("percussion","",0,20000);
 	
 	//load the sounds
-	var kick = new Sound(context,kickParams,kickGain,function(){
+	var kick = new Sound(context,cors_api_url,kickParams,kickGain,function(){
 		console.log('kick loaded');
 		$('#kicklink').attr('href',kick.permalink);
 		spinners.kickSpinner.stop();
 	});
 	
-	var snare = new Sound(context,snareParams,snareGain,function(){
+	var snare = new Sound(context,cors_api_url,snareParams,snareGain,function(){
 		console.log('snare loaded');
 		$('#snarelink').attr('href',snare.permalink);
 		spinners.snareSpinner.stop();
 	});
 	
-	var hat = new Sound(context,hatParams,hatGain,function(){
+	var hat = new Sound(context,cors_api_url,hatParams,hatGain,function(){
 		console.log('hat loaded');
 		$('#hatlink').attr('href',hat.permalink);
 		spinners.hatSpinner.stop();
 	});
 	
-	var perc = new Sound(context,percParams,percGain,function(){
+	var perc = new Sound(context,cors_api_url,percParams,percGain,function(){
 		console.log('perc loaded');
 		$('#perclink').attr('href',perc.permalink);
 		spinners.percSpinner.stop();
 	});
 	
-	var sample = new Sound(context,sampleParams,sampGain,function(){
+	var sample = new Sound(context,cors_api_url,sampleParams,sampGain,function(){
 		console.log('sample loaded');
 		$('#samplink').attr('href',sample.permalink);
 		spinners.sampSpinner.stop();
