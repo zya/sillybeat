@@ -1,12 +1,14 @@
 window.onload = function(){
 
+	window.AudioContext = window.AudioContext || window.webkitAudioContext || window.mozAudioContext;
+
 	//to handle cors
 	var protocol = location.protocol;
 	var cors_server = '//zya-cors.herokuapp.com/';
 	cors_api_url = protocol + cors_server;
   	
 	//global variables
-	var context = new webkitAudioContext();
+	var context = new AudioContext();
 	var reverb = new Reverb(context); //reverb
 	var delay = new SlapDelay(context);
 	
