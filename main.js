@@ -26,7 +26,8 @@ window.onload = function(){
 	//volumes
 	reverbGain.gain.value = 0.5;
 	hatGain.gain.value = 0.4;
-	snareGain.gain.value = 0.8;
+	snareGain.gain.value = 0.7;
+	percGain.gain.value = 0.2;
 	sampGain.gain.value = 0.9;
 	delay.output.gain.value = 0.5;
 	//connections
@@ -137,62 +138,43 @@ window.onload = function(){
 		l = new loop(function(next){
 
 			//here i play the sounds 
-		
-			if(kick.loaded){
 
-				for(var i=0; i < kickPattern.length;i++){
-					if(kickPattern[i]){
-						kick.start(next + (sixteenthNote * i));
-						kick.stop(next + (sixteenthNote * i) + (sixteenthNote * 1.5));
-					}
+			for(var i = 0; i < 16; i++){
+				
+				//kick
+				if(kick.loaded && kickPattern[i]){
+
+					kick.start(next + (sixteenthNote * i));
+					kick.stop(next + (sixteenthNote * i) + (sixteenthNote * 1.5));
+
 				}
-				
-			}
-			
-			
-			if(snare.loaded){
-				snare.start(next + (quarterNote * 2));
-				snare.stop(next + (quarterNote * 2) + sixteenthNote);
-			}
-			
-			
-			if(perc.loaded){
-				
-				perc.start(next + (quarterNote * 3));
-				perc.stop(next + (quarterNote * 3.5));
-			}
-			
-			
-			if(hat.loaded){
+				//snare
+				if(snare.loaded){
 
-				for(var i=0; i < hatPattern.length;i++){
-					if(hatPattern[i]){
-						hat.start(next + (sixteenthNote * i));
-						hat.stop(next + (sixteenthNote * i) + sixteenthNote);
-					}
+					snare.start(next + (quarterNote * 2));
+					snare.stop(next + (quarterNote * 2) + sixteenthNote);
 				}
-				
-			}
+				//hihat
+				if(hat.loaded && hatPattern[i]){
 
-			if(sample.loaded){
-				
-				for(var i=0; i < samplePattern.length;i++){
-					if(samplePattern[i]){
-
-						var offset = sampleOffsetPattern[i] * (sample.buffer.duration);
-						//sample.playbackRate = Math.round(Math.random() * 2);
-						sample.start(next + (sixteenthNote * i),offset);
-						
-
-						sample.stop(next + (sixteenthNote * i) + (sixteenthNote));
-					}
+					hat.start(next + (sixteenthNote * i));
+					hat.stop(next + (sixteenthNote * i) + sixteenthNote);
 				}
-				
-			
-			}else{
-				console.log('sample not loaded yet');
+				//perc
+				if(perc.loaded){
+					perc.start(next + (quarterNote * 3));
+					perc.stop(next + (quarterNote * 3.5));
+				}
+				//sample
+				if(sample.loaded && samplePattern[i]){
+
+					var offset = sampleOffsetPattern[i] * (sample.buffer.duration);
+					sample.start(next + (sixteenthNote * i),offset);
+					sample.stop(next + (sixteenthNote * i) + (sixteenthNote));
+				}
+
 			}
-		
+			
 
 		},0,speed,context);
 		
