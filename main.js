@@ -102,7 +102,7 @@ window.onload = function(){
 				if(kick.loaded && kickPattern[i]){
 
 					kick.start(next + (sixteenthNote * i));
-					kick.stop(next + (sixteenthNote * i) + (sixteenthNote * 1.5));
+					kick.stop(next + (sixteenthNote * i) + (sixteenthNote));
 
 				}
 				//snare
@@ -146,11 +146,11 @@ window.onload = function(){
 	//generate search params - query,tags,durationfrom,durationto
 	function generateParams(){
 		
-		kickParams = generateParameters("808 kick","",300, 30000);
+		kickParams = generateParameters("kick drum","",300, 40000);
 		snareParams = generateParameters("snare","",100,30000);
 		hatParams = generateParameters("hihat","",100,30000);
-		sampleParams = generateParameters("","",5000,100000);
-		percParams = generateParameters("percussion","",0,30000);
+		sampleParams = generateParameters("","",5000,500000);
+		percParams = generateParameters("percussion sample","",0,30000);
 
 	}
 	
@@ -198,7 +198,7 @@ window.onload = function(){
 		//make new patterns
 		hatPattern = generatePattern(3);
 		samplePattern = generatePattern(1);
-		kickPattern = generatePattern(4);
+		kickPattern = generatePattern(3);
 		sampleOffsetPattern = generateOffsetPattern();
 
 	}

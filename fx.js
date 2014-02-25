@@ -34,7 +34,7 @@ function SlapDelay(context){
 	this.delay = context.createDelay();
 	this.feedback = context.createGain();
 	
-	this.feedback.gain.value = 0.1;
+	this.feedback.gain.value = 0.15;
 
 	this.input.connect(this.delay);
 	this.delay.connect(this.feedback);
