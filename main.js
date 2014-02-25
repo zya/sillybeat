@@ -11,6 +11,10 @@ window.onload = function(){
 	var context = new AudioContext();
 	var reverb = new Reverb(context); //reverb
 	var delay = new SlapDelay(context);
+	var compressor = context.createDynamicsCompressor();
+	compressor.ratio.value = 5;
+	compressor.threshold.value = -15;
+	console.log(compressor);
 	
 	var masterGain = context.createGain();
 	var beatGain = context.createGain();
@@ -43,7 +47,8 @@ window.onload = function(){
 	reverb.convolver.connect(reverbGain);
 	beatGain.connect(masterGain);
 	reverbGain.connect(masterGain);
-	masterGain.connect(context.destination);
+	masterGain.connect(compressor);
+	compressor.connect(context.destination);
 	
 	//global object
 	var global = {
@@ -128,7 +133,6 @@ window.onload = function(){
 	var quarterNote = speed / 4;
 	var eightNote = speed / 8;
 	var sixteenthNote = speed / 16;
-
 	delay.delay.delayTime.value = eightNote;
 
 	
@@ -185,6 +189,8 @@ window.onload = function(){
 	}
 
 	function refreshSounds(){
+
+
 		kick = new Sound(context, cors_api_url, kickParams,kickGain,function(){
 			console.log('kick loaded');
 			
@@ -219,7 +225,8 @@ window.onload = function(){
 	}
 
 	function refreshPatterns(){
-
+		
+		//make new patterns
 		hatPattern = generatePattern(3);
 		samplePattern = generatePattern(1);
 		kickPattern = generatePattern(4);
