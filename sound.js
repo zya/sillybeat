@@ -51,7 +51,7 @@ function Sound(context,cors,searchparameters,output,callbackfunction){
 }
 
 //play method
-Sound.prototype.start = function(next,offset,duration){
+Sound.prototype.start = function(next,offset){
 	
 	//create the buffer and env
 	this.source = this.context.createBufferSource();
@@ -61,6 +61,10 @@ Sound.prototype.start = function(next,offset,duration){
 	this.source.connect(this.env);
 	this.env.connect(this.destination);
 	
+	//when no offset is passed - prevents firefox from error 
+	if(!offset){
+		offset = 0;
+	}
 	//start and envelope
 	this.env.gain.setValueAtTime(0,next);
 	this.env.gain.linearRampToValueAtTime(1,next + 0.001); //to prevent cliping at start
