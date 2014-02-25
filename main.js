@@ -24,10 +24,10 @@ window.onload = function(){
 	var sampGain = context.createGain();
 
 	//volumes
-	reverbGain.gain.value = 0.3;
+	reverbGain.gain.value = 0.5;
 	hatGain.gain.value = 0.4;
 	snareGain.gain.value = 0.8;
-	sampGain.gain.value = 0.5;
+	sampGain.gain.value = 0.8;
 	delay.output.gain.value = 0.2;
 	//connections
 	kickGain.connect(beatGain);
@@ -143,7 +143,7 @@ window.onload = function(){
 				for(var i=0; i < kickPattern.length;i++){
 					if(kickPattern[i]){
 						kick.start(next + (sixteenthNote * i));
-						kick.stop(next + (sixteenthNote * i) + sixteenthNote);
+						kick.stop(next + (sixteenthNote * i) + (sixteenthNote * 1.5));
 					}
 				}
 				
@@ -152,7 +152,7 @@ window.onload = function(){
 			
 			if(snare.loaded){
 				snare.start(next + (quarterNote * 2));
-				snare.stop(next + (quarterNote * 2) + eightNote);
+				snare.stop(next + (quarterNote * 2) + sixteenthNote);
 			}
 			
 			
