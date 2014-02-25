@@ -27,8 +27,8 @@ window.onload = function(){
 	reverbGain.gain.value = 0.5;
 	hatGain.gain.value = 0.4;
 	snareGain.gain.value = 0.8;
-	sampGain.gain.value = 0.8;
-	delay.output.gain.value = 0.2;
+	sampGain.gain.value = 0.9;
+	delay.output.gain.value = 0.5;
 	//connections
 	kickGain.connect(beatGain);
 	snareGain.connect(beatGain);

@@ -72,6 +72,11 @@ Sound.prototype.start = function(next,offset,duration){
 Sound.prototype.stop = function(time){
 	this.env.gain.linearRampToValueAtTime(0,time);
 	this.source.stop(time + 0.001);
+	var that = this;
+	//for garbage collection of gain nodes
+	setTimeout(function(){
+		that.env.disconnect();
+	},time / 1000);
 
 
 };
