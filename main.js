@@ -24,11 +24,12 @@ window.onload = function(){
 	var sampGain = context.createGain();
 
 	//volumes
+	kickGain.gain.value = 1;
 	reverbGain.gain.value = 0.5;
 	hatGain.gain.value = 0.4;
-	snareGain.gain.value = 0.7;
-	percGain.gain.value = 0.2;
-	sampGain.gain.value = 0.9;
+	snareGain.gain.value = 0.15;
+	percGain.gain.value = 0.4;
+	sampGain.gain.value = 1;
 	delay.output.gain.value = 0.5;
 	//connections
 	kickGain.connect(beatGain);
@@ -78,11 +79,11 @@ window.onload = function(){
 	//init gui
 	
 	//generate search params - query,tags,durationfrom,durationto
-	var kickParams = generateParameters("808 kick","",300, 20000);
-	var snareParams = generateParameters("snare","",100,10000);
-	var hatParams = generateParameters("hihat","",100,10000);
+	var kickParams = generateParameters("808 kick","",300, 30000);
+	var snareParams = generateParameters("snare","",100,30000);
+	var hatParams = generateParameters("hihat","",100,30000);
 	var sampleParams = generateParameters("","",5000,100000);
-	var percParams = generateParameters("percussion","",0,20000);
+	var percParams = generateParameters("percussion","",0,30000);
 	
 	//load the sounds
 	var kick = new Sound(context,cors_api_url,kickParams,kickGain,function(){
@@ -123,15 +124,13 @@ window.onload = function(){
 	var sampleOffsetPattern = generateOffsetPattern();
 	
 	//choose a random tempo
-	var speed = (Math.random() * 3) + 1.5;
+	var speed = (Math.random() * 3.5) + 1;
 	var quarterNote = speed / 4;
 	var eightNote = speed / 8;
 	var sixteenthNote = speed / 16;
 
 	delay.delay.delayTime.value = eightNote;
 
-	
-	
 	
 	function play(){
 		//the loop function run every bar
