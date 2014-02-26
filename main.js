@@ -229,7 +229,6 @@ window.onload = function(){
 					console.log(SC.recordUpload);
 					SC.recordUpload({
 						method: 'POST',
-						url: "https://" + this.hostname("api") + "/tracks",
 						title: 'Silly Beat',
 						sharing: 'private'
 					},function(){
