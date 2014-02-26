@@ -1,4 +1,4 @@
-function guiinit(global, spinners, startcallback, stopcallback, soundrefreshcallback, patternsrefreshcallback, nodes){
+function guiinit(global, spinners, startcallback, stopcallback, soundrefreshcallback, patternsrefreshcallback, nodes,recordstart, recordstop){
 	//spinner params
 
 	var params = {
@@ -119,6 +119,18 @@ function guiinit(global, spinners, startcallback, stopcallback, soundrefreshcall
 					nodes.samp.gain.value = 1.2;
 				break;
 			}
+		}
+		
+	});
+
+	$('#record').click(function(){
+		
+		if($(this).attr('class') === 'glyphicon glyphicon-record butt'){
+			recordstart();
+			$(this).attr('class','glyphicon glyphicon-stop butt');
+		}else if($(this).attr('class') === 'glyphicon glyphicon-stop butt'){
+			recordstop();
+			$(this).attr('class','glyphicon glyphicon-record butt');
 		}
 		
 	});

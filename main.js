@@ -6,6 +6,8 @@ window.onload = function(){
 	var protocol = location.protocol;
 	var cors_server = '//zya-cors.herokuapp.com/';
 	cors_api_url = protocol + cors_server;
+
+	console.log(SC);
   	
 	//audio nodes
 	var context = new AudioContext();
@@ -50,6 +52,7 @@ window.onload = function(){
 	masterGain.connect(compressor);
 	compressor.connect(context.destination);
 	
+	var recorder = new Recorder(compressor);
 	//global object
 	var global = {
 		isPlaying: false
@@ -202,11 +205,43 @@ window.onload = function(){
 		sampleOffsetPattern = generateOffsetPattern();
 
 	}
-	
+
+
 	//initialize soundcloud sdk
 	SC.initialize({
-    	client_id : 'e553081039dc6507a7c3ebf6211e4590'
+    	client_id : 'e553081039dc6507a7c3ebf6211e4590',
+    	redirect_uri: 'http://zya.github.io/sillybeat'
 	});
+
+
+	function recordStart(){
+		recorder.record();
+	}
+
+	function recordStop(){
+		recorder.stop();
+		recorder.exportWAV(function(blob){
+			console.log(blob);
+			
+			
+			SC.connect({
+				connected: function(){
+					console.log(SC.recordUpload);
+					SC.recordUpload({
+						method: 'POST',
+						url: "https://" + this.hostname("api") + "/tracks",
+						title: 'Silly Beat',
+						sharing: 'private'
+					},function(){
+						console.log('upload success');
+					});
+				}
+			});
+
+		});
+	}
+	
+
 	//generate search parameters
 	generateParams();
 	//get sounds
@@ -214,6 +249,6 @@ window.onload = function(){
 	//create Patterns
 	createPatterns();
 	//init gui
-	guiinit(global,spinners,play,stop,getSounds,createPatterns,gains);
+	guiinit(global,spinners,play,stop,getSounds,createPatterns,gains,recordStart,recordStop);
 
 };
