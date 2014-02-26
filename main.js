@@ -226,7 +226,7 @@ window.onload = function(){
 		recorder.exportWAV(function(blob){
 			var filename = 'Silly Beat - #' + Math.round(Math.random() * 10000);
 			var url = (window.URL || window.webkitURL).createObjectURL(blob);
-			
+			console.log(url);
 		});
 	}
 	
