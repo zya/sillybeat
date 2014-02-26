@@ -6,11 +6,12 @@ window.onload = function(){
 	var protocol = location.protocol;
 	var cors_server = '//zya-cors.herokuapp.com/';
 	cors_api_url = protocol + cors_server;
-
-	console.log(SC);
   	
 	//audio nodes
 	var context = new AudioContext();
+	if(!context){
+		alert('Your browser does not support Web Audio API. Please Try Google Chrome, Safari or Firefox');
+	}
 	var reverb = new Reverb(context); //reverb
 	var delay = new SlapDelay(context);
 	var compressor = context.createDynamicsCompressor();
@@ -210,9 +211,10 @@ window.onload = function(){
 	//initialize soundcloud sdk
 	SC.initialize({
     	client_id : 'e553081039dc6507a7c3ebf6211e4590',
-    	redirect_uri: 'http://zya.github.io/sillybeat'
+    	redirect_uri: 'http://localhost:8888/soundcloudgenerative'
 	});
 
+	console.log(SC);
 
 	function recordStart(){
 		recorder.record();
@@ -220,23 +222,11 @@ window.onload = function(){
 
 	function recordStop(){
 		recorder.stop();
-		recorder.exportWAV(function(blob){
-			console.log(blob);
-			
-			
-			SC.connect({
-				connected: function(){
-					console.log(SC.recordUpload);
-					SC.recordUpload({
-						method: 'POST',
-						title: 'Silly Beat',
-						sharing: 'private'
-					},function(){
-						console.log('upload success');
-					});
-				}
-			});
 
+		recorder.exportWAV(function(blob){
+			var filename = 'Silly Beat - #' + Math.round(Math.random() * 10000);
+			var url = (window.URL || window.webkitURL).createObjectURL(blob);
+			
 		});
 	}
 	
