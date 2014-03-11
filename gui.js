@@ -46,6 +46,7 @@ function guiinit(global, spinners, startcallback, stopcallback, soundrefreshcall
 		spinners.hatSpinner = new Spinner(params).spin(spinnerTargetHihat);
 		spinners.percSpinner = new Spinner(params).spin(spinnerTargetPerc);
 		spinners.sampSpinner = new Spinner(params).spin(spinnerTargetSamp);
+
 	});
 
 	$('#newPatterns').click(function(){
@@ -138,16 +139,15 @@ function guiinit(global, spinners, startcallback, stopcallback, soundrefreshcall
 
 	function setBackGround(e){
 		
-		var random = Math.floor(Math.random() * e.response.length);
-		console.log(e.response[random]);
+		var random = Math.round(Math.floor(Math.random() * e.response.length));
 
 		if(e.response[random].type === 'photo'){
 
 			$('#back').css({
 
 				background: "url('" + e.response[random].photos[0].original_size.url + "')",
-                'background-size': "500% 500%",
-                opacity: '0.4'
+                'background-size': "5% 5%",
+                opacity: '0.25'
 
 			});
 		
@@ -162,7 +162,7 @@ function guiinit(global, spinners, startcallback, stopcallback, soundrefreshcall
 	function getPics(){
 
 		$.ajax({
-	        url: 'http://api.tumblr.com/v2/tagged?tag=glitch+gif&api_key=cIBh1bpFkHI2pyWmGDV3YPOlErsRgNCtsJ715Pl09uMKEY2kOK&limit=40',
+	        url: 'http://api.tumblr.com/v2/tagged?tag=gif&api_key=cIBh1bpFkHI2pyWmGDV3YPOlErsRgNCtsJ715Pl09uMKEY2kOK&limit=40',
 	        success: setBackGround,
 	        dataType: 'jsonp'
    		 });
