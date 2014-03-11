@@ -146,8 +146,8 @@ function guiinit(global, spinners, startcallback, stopcallback, soundrefreshcall
 			$('#back').css({
 
 				background: "url('" + e.response[random].photos[0].original_size.url + "')",
-                'background-size': "100% 100%",
-                opacity: '0.25'
+                'background-size': "500% 500%",
+                opacity: '0.4'
 
 			});
 		
@@ -170,6 +170,22 @@ function guiinit(global, spinners, startcallback, stopcallback, soundrefreshcall
 	}
 
 	getPics();
+
+	$('#questionmark').click(function(){
+
+		var state = String($('#desc').css('visibility'));
+		console.log(state);
+		
+		if(state === 'hidden'){
+
+			$('#desc').css('visibility','visible')
+
+		}else{
+
+			$('#desc').css('visibility','hidden')
+		}
+
+	});
 
 
 

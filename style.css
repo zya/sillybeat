@@ -106,4 +106,23 @@ h2{
 	color: grey;
 }
 
+#help{
+
+	text-align: center;
+
+}
+
+#questionmark{
+	color: black;
+	cursor: pointer;
+	font-size: 15px;
+}
+
+#questionmark:hover{
+	color:grey;
+}
+
+#desc{
+	visibility: hidden;
+}
 
