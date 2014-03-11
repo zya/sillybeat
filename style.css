@@ -12,35 +12,62 @@ body{
 	margin: 0;
 	overflow: hidden;
 }
-.container{
+
+#back{
+
 	width: 100%;
 	height: 100%;
+	padding: 0;
+	margin: 0;
+	position: absolute;
+	z-index: -2;
+
+}
+.container{
+
+	width: 50%;
+	height: 50%;
+	background-color:rgba(0,0,0,0.9);
+	margin-top: 9%;
+	border-radius: 10px;
+	z-index: 3;
 }
 
 #head{
 	height: 18%;
+	border-bottom: white 1px solid;
 }
 
 #visual{
 	height: 32%;
-	background-color: grey;
+	//background-color: grey;
 }
 
 #buttons{
-	height: 25%;
+	//height: 25%;
 	text-align: center;
 	font-family: 'Telex', sans-serif;
+	border-bottom: white 1px solid;
+	padding-bottom: 10px;
+
 }
 
 #indic{
 	height: 25%;
-	background-color: grey;
+	//background-color: grey;
+
 }
 
 #title{
 	font-family: 'Telex', sans-serif;
-	color: black;
+	color: white;
 	text-align: center;
+
+}
+h2{
+
+	font-size: 20px;
+
 }
 #spinnerTarget{
 	width: 20px;
@@ -50,36 +77,33 @@ body{
 
 .col-md-2{
 	font-family: 'Telex', sans-serif;
-	height: 100px;
+	//height: 100px;
 	text-align: center;
 }
 
 
 .butt{
-	font-size: 80px;
+	font-size: 50px;
 	cursor: pointer;
+	color: white;
 }
 
 .butt:hover{
 	color: grey;
 }
 
-.link{
-	color: black;
-	cursor: pointer;
 
-}
-.link:hover{
+
+.text{
 	color: white;
 }
 
-.vol{
-	color: black;
-}
-
-.vol:hover{
+.glyphicon{
 	color: white;
 }
 
+.glyphicon:hover{
+	color: grey;
+}
 
 

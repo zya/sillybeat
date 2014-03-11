@@ -10,8 +10,8 @@ function guiinit(global, spinners, startcallback, stopcallback, soundrefreshcall
   		corners: 1, // Corner roundness (0..1)
   		rotate: 30, // The rotation offset
   		direction: 1, // 1: clockwise, -1: counterclockwise
-  		color: '#000', // #rgb or #rrggbb or array of colors
-  		speed: 1.4, // Rounds per second
+  		color: '#fff', // #rgb or #rrggbb or array of colors
+  		speed: 1.2, // Rounds per second
   		trail: 54, // Afterglow percentage
   		shadow: false, // Whether to render a shadow
   		hwaccel: false, // Whether to use hardware acceleration
@@ -40,7 +40,7 @@ function guiinit(global, spinners, startcallback, stopcallback, soundrefreshcall
 
 	$('#newSounds').click(function(){
 		soundrefreshcallback();
-
+		getPics();
 		spinners.kickSpinner = new Spinner(params).spin(spinnerTargetKick);
 		spinners.snareSpinner = new Spinner(params).spin(spinnerTargetSnare);
 		spinners.hatSpinner = new Spinner(params).spin(spinnerTargetHihat);
@@ -50,6 +50,7 @@ function guiinit(global, spinners, startcallback, stopcallback, soundrefreshcall
 
 	$('#newPatterns').click(function(){
 		patternsrefreshcallback();
+		getPics();
 	});
 
 	$('#play').click(function(){
@@ -134,6 +135,42 @@ function guiinit(global, spinners, startcallback, stopcallback, soundrefreshcall
 		}
 		
 	});
+
+	function setBackGround(e){
+		
+		var random = Math.floor(Math.random() * e.response.length);
+		console.log(e.response[random]);
+
+		if(e.response[random].type === 'photo'){
+
+			$('#back').css({
+
+				background: "url('" + e.response[random].photos[0].original_size.url + "')",
+                'background-size': "100% 100%",
+                opacity: '0.25'
+
+			});
+		
+		}else{
+
+			setBackGround();
+		}
+
+	}
+	
+
+	function getPics(){
+
+		$.ajax({
+	        url: 'http://api.tumblr.com/v2/tagged?tag=glitch+gif&api_key=cIBh1bpFkHI2pyWmGDV3YPOlErsRgNCtsJ715Pl09uMKEY2kOK&limit=40',
+	        success: setBackGround,
+	        dataType: 'jsonp'
+   		 });
+
+	}
+
+	getPics();
+
 
 
 }
