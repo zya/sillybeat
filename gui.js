@@ -40,7 +40,7 @@ function guiinit(global, spinners, startcallback, stopcallback, soundrefreshcall
 
 	$('#newSounds').click(function(){
 		soundrefreshcallback();
-		getPics();
+		//getPics();
 		spinners.kickSpinner = new Spinner(params).spin(spinnerTargetKick);
 		spinners.snareSpinner = new Spinner(params).spin(spinnerTargetSnare);
 		spinners.hatSpinner = new Spinner(params).spin(spinnerTargetHihat);
@@ -51,7 +51,7 @@ function guiinit(global, spinners, startcallback, stopcallback, soundrefreshcall
 
 	$('#newPatterns').click(function(){
 		patternsrefreshcallback();
-		getPics();
+		//getPics();
 	});
 
 	$('#play').click(function(){
@@ -169,12 +169,11 @@ function guiinit(global, spinners, startcallback, stopcallback, soundrefreshcall
 
 	}
 
-	getPics();
+	//getPics();
 
 	$('#questionmark').click(function(){
 
 		var state = String($('#desc').css('visibility'));
-		console.log(state);
 		
 		if(state === 'hidden'){
 
