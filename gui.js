@@ -71,6 +71,7 @@ function guiinit(global, spinners, startcallback, stopcallback, soundrefreshcall
 		e.preventDefault();
 		if($(this).attr('class') === 'glyphicon glyphicon-volume-up vol'){
 			$(this).attr('class','glyphicon glyphicon-volume-off vol');
+			
 			var id = $(this).attr('id');
 			switch(id){
 				case 'kickvol':
@@ -97,8 +98,9 @@ function guiinit(global, spinners, startcallback, stopcallback, soundrefreshcall
 			}
 		}else{
 			$(this).attr('class','glyphicon glyphicon-volume-up vol');
-			var id = $(this).attr('id');
-			switch(id){
+			
+			var id2 = $(this).attr('id');
+			switch(id2){
 				case 'kickvol':
 					nodes.kick.gain.value = 1;
 
@@ -177,11 +179,11 @@ function guiinit(global, spinners, startcallback, stopcallback, soundrefreshcall
 		
 		if(state === 'hidden'){
 
-			$('#desc').css('visibility','visible')
+			$('#desc').css('visibility','visible');
 
 		}else{
 
-			$('#desc').css('visibility','hidden')
+			$('#desc').css('visibility','hidden');
 		}
 
 	});
