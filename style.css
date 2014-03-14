@@ -35,13 +35,14 @@ body{
 }
 
 #head{
-	height: 18%;
+	height: 20%;
 	border-bottom: white 1px solid;
+	padding-bottom: 10px;
 }
 
 #visual{
 	height: 32%;
-	//background-color: grey;
+
 }
 
 #buttons{
@@ -123,6 +124,9 @@ h2{
 
 #desc{
 	visibility: hidden;
+	background-color: black;
+	color: white;
+	font-size: 12px;
 }
 
 

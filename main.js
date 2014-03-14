@@ -10,11 +10,30 @@ var context = new AudioContext();
 if(!context){
 	alert('Your browser does not support Web Audio API. Please Try Google Chrome, Safari or Firefox');
 }
-var reverb = new Reverb(context); //reverb
+
+var isMobile = {
+    Android: function() {
+        return navigator.userAgent.match(/Android/i) ? true : false;
+    },
+    BlackBerry: function() {
+        return navigator.userAgent.match(/BlackBerry/i) ? true : false;
+    },
+    iOS: function() {
+        return navigator.userAgent.match(/iPhone|iPad|iPod/i) ? true : false;
+    },
+    Windows: function() {
+        return navigator.userAgent.match(/IEMobile/i) ? true : false;
+    },
+    any: function() {
+        return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Windows());
+    }
+};
+var ios = isMobile.iOS();
+var android = isMobile.Android();
+
+
+
 var delay = new SlapDelay(context);
-var compressor = context.createDynamicsCompressor();
-compressor.ratio.value = 5;
-compressor.threshold.value = -15;
 
 var masterGain = context.createGain();
 var beatGain = context.createGain();
@@ -44,14 +63,33 @@ percGain.connect(beatGain);
 sampGain.connect(beatGain);
 sampGain.connect(delay.input);
 delay.output.connect(beatGain);
-beatGain.connect(reverb.convolver);
-reverb.convolver.connect(reverbGain);
+
 beatGain.connect(masterGain);
 reverbGain.connect(masterGain);
-masterGain.connect(compressor);
-compressor.connect(context.destination);
 
-var recorder = new Recorder(compressor);
+
+var reverb,compressor,recorder;
+if(ios || android){
+
+	masterGain.connect(context.destination);
+
+}else {
+
+	compressor = context.createDynamicsCompressor();
+	compressor.ratio.value = 5;
+	compressor.threshold.value = -15;
+
+	reverb = new Reverb(context); //reverb
+	beatGain.connect(reverb.convolver);
+	reverb.convolver.connect(reverbGain);
+
+	masterGain.connect(compressor);
+	compressor.connect(context.destination);
+	recorder = new Recorder(compressor);
+
+}
+
+
 //global object
 var global = {
 	isPlaying: false
