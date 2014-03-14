@@ -124,7 +124,8 @@ h2{
 
 #desc{
 	visibility: hidden;
-	background-color: black;
+	background-color: rgba(0,0,0,0.8);
+	font-family: 'Telex', sans-serif;
 	color: white;
 	font-size: 12px;
 }
