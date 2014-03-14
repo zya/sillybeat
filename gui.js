@@ -40,18 +40,26 @@ function guiinit(global, spinners, startcallback, stopcallback, soundrefreshcall
 
 	$('#newSounds').click(function(){
 		soundrefreshcallback();
-		getPics();
+		
 		spinners.kickSpinner = new Spinner(params).spin(spinnerTargetKick);
 		spinners.snareSpinner = new Spinner(params).spin(spinnerTargetSnare);
 		spinners.hatSpinner = new Spinner(params).spin(spinnerTargetHihat);
 		spinners.percSpinner = new Spinner(params).spin(spinnerTargetPerc);
 		spinners.sampSpinner = new Spinner(params).spin(spinnerTargetSamp);
 
+		if(!ios && !android){
+
+			getPics();
+		}
+
 	});
 
 	$('#newPatterns').click(function(){
 		patternsrefreshcallback();
-		getPics();
+		if(!ios && !android){
+
+			getPics();
+		}
 	});
 
 	$('#play').click(function(){
@@ -182,6 +190,7 @@ function guiinit(global, spinners, startcallback, stopcallback, soundrefreshcall
 
 		masterGain.connect(context.destination);
 		$('#recorder').css('opacity','0.3');
+		$('#rectext').html('Record - Not Available on Mobile');
 
 	}else{
 		$('#record').click(function(){
@@ -196,7 +205,10 @@ function guiinit(global, spinners, startcallback, stopcallback, soundrefreshcall
 			
 		});
 		getPics();
+		
 	}
+
+
 
 	
 
