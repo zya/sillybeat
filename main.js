@@ -84,6 +84,7 @@ if(ios || android){
 	reverb.convolver.connect(reverbGain);
 
 	masterGain.connect(compressor);
+	masterGain.gain.value = 0.9;
 	compressor.connect(context.destination);
 	recorder = new Recorder(compressor);
 
@@ -173,13 +174,14 @@ function play(){
 		
 
 	},0,speed,context);
-	
+	beatGain.gain.value = 1;
 	l.start();
 }
 
 //stop functin stops the loop
 function stop(){
 	l.stop();
+	beatGain.gain.value = 0;
 }
 
 //generate search params - query,tags,durationfrom,durationto

@@ -140,7 +140,8 @@ function guiinit(global, spinners, startcallback, stopcallback, soundrefreshcall
 	function setBackGround(e){
 		
 		var random = Math.round(Math.floor(Math.random() * e.response.length));
-
+		console.log(e.response.length);
+		console.log(random);
 		if(e.response[random].type === 'photo'){
 
 			$('#back').css({
@@ -162,7 +163,7 @@ function guiinit(global, spinners, startcallback, stopcallback, soundrefreshcall
 	function getPics(){
 
 		$.ajax({
-	        url: 'http://api.tumblr.com/v2/tagged?tag=glitch+gif&api_key=cIBh1bpFkHI2pyWmGDV3YPOlErsRgNCtsJ715Pl09uMKEY2kOK&limit=40',
+	        url: 'http://api.tumblr.com/v2/tagged?tag=glitch+gif&api_key=cIBh1bpFkHI2pyWmGDV3YPOlErsRgNCtsJ715Pl09uMKEY2kOK&limit=50',
 	        success: setBackGround,
 	        dataType: 'jsonp'
    		 });
@@ -207,12 +208,6 @@ function guiinit(global, spinners, startcallback, stopcallback, soundrefreshcall
 		getPics();
 		
 	}
-
-
-
-	
-
-
 
 }
 
