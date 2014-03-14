@@ -8,7 +8,7 @@ function Sound(context,cors,searchparameters,output,callbackfunction){
 	this.destination = output;
 	this.url = null;
 	this.permalink = null;
-	this.request;
+	this.request = null;
 	this.playbackRate = Math.random() + 0.3;
 	//get sounds from soundcloud
 	SC.get('/tracks',searchparameters,function(tracks){

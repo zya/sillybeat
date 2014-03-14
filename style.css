@@ -26,9 +26,8 @@ body{
 .container{
 
 	width: 50%;
-	height: 50%;
 	min-height: 350px;
-	min-width: 500px;
+	min-width: 510px;
 	background-color:rgba(0,0,0,0.9);
 	margin-top: 9%;
 	border-radius: 10px;
